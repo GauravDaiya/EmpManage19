@@ -1,0 +1,1 @@
+import"./chunk-2NFLSA4Y.js";var t=[{path:"",redirectTo:"dashboard",pathMatch:"full"},{path:"dashboard",loadComponent:()=>import("./chunk-BNWHI45U.js").then(o=>o.DashboardComponent),children:[{path:"",loadChildren:()=>import("./chunk-OHEUBUQI.js").then(o=>o.employeeRoutes)}]}];export{t as layoutRoutes};
