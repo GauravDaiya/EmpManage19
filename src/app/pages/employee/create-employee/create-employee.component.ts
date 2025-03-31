@@ -59,12 +59,12 @@ export class CreateEmployeeComponent implements OnInit, OnDestroy {
       if (this.isEditMode) {
         const EditEmpData = { ...this.employeeForm.value};
         this.empSrv.UpdateEmployee(this.EditEmployeeData._id,EditEmpData).subscribe((UpdRes: any) => {
-          this.router.navigate(['/dashboard/view-employee'])
+          this.router.navigate(['layout/dashboard/view-employee'])
         })
       } else {
         this.empSrv.createNewEmp(this.employeeForm.value).subscribe(res => {
           if(res) {
-            this.router.navigate(['/dashboard/view-employee'])
+            this.router.navigate(['layout/dashboard/view-employee'])
           }
         }, error => {
           console.error('Error adding employee:', error);

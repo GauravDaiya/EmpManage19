@@ -44,7 +44,7 @@ export class ViewEmployeeComponent implements OnInit {
   onEdit(empId: any) {
     this.empSrv.ActiveEmployeeEditMode();
     this.empSrv.setEmployeeToEdit(empId); 
-    this.router.navigate(['/dashboard/create-employee'])
+    this.router.navigate(['layout/dashboard/create-employee'])
   }
 
 }

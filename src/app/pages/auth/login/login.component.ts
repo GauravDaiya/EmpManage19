@@ -35,7 +35,7 @@ export class LoginComponent {
       next: (LogRes: any) => {
         console.log(LogRes);
         if (LogRes.status === 'Success') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/layout/dashboard']);
           sessionStorage.setItem('Employee', JSON.stringify(LogRes.data));
         } else {
           alert('Wrong Credentials');
