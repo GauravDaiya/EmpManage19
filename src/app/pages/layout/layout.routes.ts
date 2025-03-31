@@ -5,7 +5,8 @@ export const layoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', loadComponent: () => import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
         children: [
-            {path: '', children: employeeRoutes}
+            {path: '', loadChildren: () => import('./../employee/employee.routes').then(m=>m.employeeRoutes)}
+            //{path: '', children: employeeRoutes}
         ]
     }
 ];

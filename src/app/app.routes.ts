@@ -6,6 +6,8 @@ import { authcheckGuard } from './core/guards/authcheck.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: 'auth', children: authRoutes, canActivate: [authcheckGuard]},
-  {path: 'layout', children: layoutRoutes, canActivate: [authGuard]}
+  {path: 'auth', loadChildren: () => import('./pages/auth/auth.routes').then(m=>m.authRoutes), canActivate: [authcheckGuard]},
+  {path: 'layout', loadChildren: () => import('./pages/layout/layout.routes').then(m=>m.layoutRoutes), canActivate: [authGuard]}
+  //{ path: 'auth', children: authRoutes, canActivate: [authcheckGuard]},
+  //{path: 'layout', children: layoutRoutes, canActivate: [authGuard]}
 ];
