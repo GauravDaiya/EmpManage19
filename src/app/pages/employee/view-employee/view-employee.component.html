@@ -1,0 +1,74 @@
+<div class="col-12 my-3">
+    <h3 class="m-2">Employee Data</h3>
+    <div class="row">
+        <div class="col-11 my-3 mx-auto">
+            <section class="example-container mat-elevation-z8" tabindex="0">
+                <table mat-table [dataSource]="dataSource">
+
+                    <!-- Serial Number (S.N.) Column -->
+                    <ng-container matColumnDef="sn">
+                        <th mat-header-cell *matHeaderCellDef> S.N. </th>
+                        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                    </ng-container>
+
+
+
+                    <!-- empId Column -->
+                    <ng-container matColumnDef="empId">
+                        <th mat-header-cell *matHeaderCellDef> ID. </th>
+                        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+                    </ng-container>
+
+                    <!-- empName Column -->
+                    <ng-container matColumnDef="empName">
+                        <th mat-header-cell *matHeaderCellDef> Employee Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
+                    </ng-container>
+
+                    <!-- empEmailId Column -->
+                    <ng-container matColumnDef="empEmailId">
+                        <th mat-header-cell *matHeaderCellDef> Employee Email Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+                    </ng-container>
+
+                    <!-- Department Column -->
+                    <ng-container matColumnDef="department">
+                        <th mat-header-cell *matHeaderCellDef> Employee Department </th>
+                        <td mat-cell *matCellDef="let element"> {{element.deptName}} </td>
+                    </ng-container>
+
+                    <!-- role Column -->
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef> Employee Role </th>
+                        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                    </ng-container>
+
+                    <!-- mobile Column -->
+                    <ng-container matColumnDef="mobile">
+                        <th mat-header-cell *matHeaderCellDef> Employee Mobile </th>
+                        <td mat-cell *matCellDef="let element"> {{element.contactNo
+                            }} </td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button color="primary" (click)="onEdit(element._id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="onDelete(element._id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </section>
+        </div>
+    </div>
+
+
+</div>

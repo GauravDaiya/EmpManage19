@@ -1,0 +1,65 @@
+<form [formGroup]="employeeForm" class="col-12 my-3" (ngSubmit)="submitForm()">
+    <h4 class="mx-3 my-4">{{(isEditMode ? 'Edit Employee Details:' : 'Add Emplyee Details:')}}</h4>
+    <div class="row justify-content-between my-3 mx-0 flex-wrap">
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Employee Name</mat-label>
+                <input matInput formControlName="employeeName">
+            </mat-form-field>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Employee Email</mat-label>
+                <input type="email" formControlName="emailId" matInput placeholder="Ex. pat@example.com">
+            </mat-form-field>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Employee Contact</mat-label>
+                <span matTextPrefix>+1 &nbsp;</span>
+                <input type="tel" formControlName="contactNo" matInput placeholder="555-555-1234">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-radio-group aria-label="Select an option" formControlName="gender" class="w-100">
+                <mat-radio-button value="male">Male</mat-radio-button>
+                <mat-radio-button value="female">Female</mat-radio-button>
+                <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Enter your password</mat-label>
+                <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+                <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide()">
+                    <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Emploee Department</mat-label>
+                <mat-select formControlName="deptName">
+                    @for (Depart of DepartmentData; track Depart) {
+                    <mat-option [value]="Depart ">{{Depart}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-3 mx-3">
+            <mat-form-field class="w-100">
+                <mat-label>Select Emploee Role</mat-label>
+                <mat-select formControlName="role">
+                    @for (Role of RolesData; track Role) {
+                    <mat-option [value]="Role">{{Role}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="my-2">
+            <button class="my-3" mat-stroked-button>{{isEditMode ? 'Edit Employee':'Create New Employee' }}</button>
+        </div>
+    </div>
+</form>
