@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 
@@ -13,7 +13,9 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Angular19';
   
-  constructor() {
-    console.log('App Component Render')
+  constructor(private ngZone: NgZone) {
+    this.ngZone.onMicrotaskEmpty.subscribe(() => {
+      console.log('Change detection ran (potential re-renders)');
+    });
   }
 }
