@@ -1,1 +1,0 @@
-import"./chunk-2NFLSA4Y.js";var o=[{path:"",redirectTo:"view-employee",pathMatch:"full"},{path:"view-employee",loadComponent:()=>import("./chunk-JJQM7GX4.js").then(e=>e.ViewEmployeeComponent)},{path:"create-employee",loadComponent:()=>import("./chunk-NYPGBOHW.js").then(e=>e.CreateEmployeeComponent)}];export{o as employeeRoutes};
