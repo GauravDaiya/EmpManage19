@@ -1,8 +1,9 @@
-import { Component, effect, OnInit } from '@angular/core';
+import { Component, DestroyRef, effect, inject, OnDestroy, OnInit } from '@angular/core';
 import { MATERIAL_IMPORTS } from '../../../shared/shared.material';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../../../core/services/employee.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-view-employee',
@@ -10,8 +11,9 @@ import { EmployeeService } from '../../../core/services/employee.service';
   templateUrl: './view-employee.component.html',
   styleUrl: './view-employee.component.scss'
 })
-export class ViewEmployeeComponent implements OnInit {
+export class ViewEmployeeComponent implements OnInit, OnDestroy {
   
+  private destroyRef = inject(DestroyRef);
   public AllEmployeeData !: any[];
   public dataSource = new MatTableDataSource<any>();
 
@@ -26,6 +28,11 @@ export class ViewEmployeeComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+    console.log('View-Emp Destroy');
+    
+  }
+
   ngOnInit(): void {
     this.empSrv.GellAllEmployee().subscribe();
   }
@@ -38,8 +45,11 @@ export class ViewEmployeeComponent implements OnInit {
 
   onEdit(empId: any) {
     this.empSrv.ActiveEmployeeEditMode(); 
-    this.empSrv.GetEmployeeById(empId).subscribe(() => {
+    this.empSrv.GetEmployeeById(empId).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(() => {
       this.router.navigate(['layout/dashboard/create-employee'])
     })
+    
   }
 }

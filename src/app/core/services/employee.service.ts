@@ -42,7 +42,6 @@ export class EmployeeService {
     return this.http.get<{ data: { AllEmployees: any[] } }>(`${this.apiUrl}/GetAllEmployees`)
       .pipe(
         tap(res => {
-          console.log(res.data.AllEmployees);
           this.patchState({
             employees: res.data.AllEmployees,
             loading: false
